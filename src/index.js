@@ -9,9 +9,9 @@ const runServer  = async () => {
     };
     const app = await server(conf);
     await app.start();
-    console.log(`Server running at http://${ config.host }:${ config.port }`);
+    console.log(`Server running at http://${ conf.host }:${ conf.port }`);
   } catch (e) {
-    console.log("Start Up error", err);
+    console.log("Start Up error", e);
   }
 };
 
