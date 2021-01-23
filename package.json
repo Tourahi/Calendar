@@ -10,7 +10,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@hapi/hapi": "^20.0.3"
+    "@hapi/hapi": "^20.0.3",
+    "dotenv": "^8.2.0",
+    "fs-extra": "^9.1.0",
+    "mssql": "^6.3.1"
   },
   "devDependencies": {
     "eslint": "^7.18.0",
