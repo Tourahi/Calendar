@@ -34,7 +34,7 @@ module.exports = {
 
     server.auth.default( "session" );
 
-    server.ext( "onPreRespounse" , ( request , h ) => {
+    server.ext( "onPreResponse" , ( request , h ) => {
       if( request.response.variety == "view") {
         const auth  = request.auth.isAuthenticated ? {
           isAuthenticated: true,
