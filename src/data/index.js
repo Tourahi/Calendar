@@ -3,7 +3,7 @@
 const events = require("./events");
 const sql    = require("mssql");
 
-const client = async (server , conf) = {
+const client = async (server , conf) => {
   let pool = null;
   const closePool = async () => {
     try {
@@ -16,23 +16,28 @@ const client = async (server , conf) = {
   };
   const openPool = async () => {
     try {
-      await pool = await sql.connect( conf );
+      pool = await sql.connect( conf );
       pool.on( "error", async err => {
         console.log( err );
         await closePool();
       });
-    } catch (e) {
+    }catch(e) {
       console.log( e );
       pool = null;
     }
   };
   const getConnection = async () => {
     if(pool) return pool;
-    openPool();
-    return pool;
+    try {
+      await openPool();
+      return pool;
+    }catch(e) {
+      console.log( e );
+      pool = null;
+    }
   };
 
-  return {
+  return { //client | client.events.getEvents : will run the getEvents query defined
       events: await events.register( { sql, getConnection } )
   };
 };
