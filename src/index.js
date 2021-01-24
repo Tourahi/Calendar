@@ -12,4 +12,4 @@ const runServer  = async (conf) => {
   }
 };
 
-runServer();
+runServer(conf);
