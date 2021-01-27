@@ -7,11 +7,12 @@ module.exports.register = async server => {
   // api
   await api.register( server );
   await auth.register( server );
+
   server.route({
     method: "GET",
     path: "/",
     handler: async (request,h) => {
-      return h.view( "index", {title: "Home"} );
+      return h.view( "index", { title: "Home", message: "Welcome!" } );
     },
     options: {
       auth: {
@@ -19,7 +20,7 @@ module.exports.register = async server => {
       }
     }
   });
-  
+
   server.route( {
 		method: "GET",
 		path: "/{param*}",
